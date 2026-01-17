@@ -88,6 +88,12 @@ func TestPipe(t *testing.T) {
 	if string(buf) != "hello" {
 		t.Errorf("expected 'hello', got %s", buf)
 	}
+	
+	// Read again to verify EOF doesn't panic
+	n = r.Read(buf)
+	if n != 0 {
+		t.Errorf("expected 0 bytes read at EOF, got %d", n)
+	}
 }
 
 func TestReaderOf(t *testing.T) {

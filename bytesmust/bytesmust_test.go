@@ -78,6 +78,21 @@ func TestReader(t *testing.T) {
 		}
 	})
 
+	t.Run("Read_EOF", func(t *testing.T) {
+		r := bytesmust.NewReader([]byte("hello"))
+		buf := make([]byte, 10)
+		// First read should get all 5 bytes without panicking
+		n := r.Read(buf)
+		if n != 5 {
+			t.Errorf("expected 5 bytes read, got %d", n)
+		}
+		// Second read should return 0 and not panic on EOF
+		n = r.Read(buf)
+		if n != 0 {
+			t.Errorf("expected 0 bytes read at EOF, got %d", n)
+		}
+	})
+
 	t.Run("ReadAt", func(t *testing.T) {
 		r := bytesmust.NewReader([]byte("hello world"))
 		buf := make([]byte, 5)
