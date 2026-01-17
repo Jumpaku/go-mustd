@@ -170,4 +170,13 @@ func TestUnquoteChar(t *testing.T) {
 			t.Errorf("unexpected result: %v, %v, %s", value, multibyte, tail)
 		}
 	})
+
+	t.Run("invalid escape sequence panics", func(t *testing.T) {
+		defer func() {
+			if r := recover(); r == nil {
+				t.Error("UnquoteChar did not panic with invalid escape sequence")
+			}
+		}()
+		strconvmust.UnquoteChar(`\x`, '"')
+	})
 }
