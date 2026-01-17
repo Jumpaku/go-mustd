@@ -102,8 +102,8 @@ func (w *ioWrapper) ReadWriteCloser() io.ReadWriteCloser {
 	return mustd.MustImplement[io.ReadWriteCloser](w.wrap)
 }
 
-// ReadWriterSeeker returns the underlying io.ReadWriteSeeker, panicking if not implemented.
-func (w *ioWrapper) ReadWriterSeeker() io.ReadWriteSeeker {
+// ReadWriteSeeker returns the underlying io.ReadWriteSeeker, panicking if not implemented.
+func (w *ioWrapper) ReadWriteSeeker() io.ReadWriteSeeker {
 	return mustd.MustImplement[io.ReadWriteSeeker](w.wrap)
 }
 
