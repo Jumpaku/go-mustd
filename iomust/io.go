@@ -87,7 +87,7 @@ type ReadWriteSeeker interface {
 	Reader
 	Writer
 	Seeker
-	ReadWriterSeeker() io.ReadWriteSeeker
+	ReadWriteSeeker() io.ReadWriteSeeker
 }
 
 // NopCloser returns a ReadCloser wrapping r, using io.NopCloser. Panics on error.
