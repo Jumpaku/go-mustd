@@ -50,6 +50,23 @@ func TestCreateOpenFile(t *testing.T) {
 			t.Errorf("expected 'hello', got %s", buf)
 		}
 	})
+
+	t.Run("Read_EOF", func(t *testing.T) {
+		f := osmust.Open(filename)
+		defer f.Close()
+
+		buf := make([]byte, 10)
+		// First read should get all 5 bytes without panicking
+		n := f.Read(buf)
+		if n != 5 {
+			t.Errorf("expected 5 bytes read, got %d", n)
+		}
+		// Second read should return 0 and not panic on EOF
+		n = f.Read(buf)
+		if n != 0 {
+			t.Errorf("expected 0 bytes read at EOF, got %d", n)
+		}
+	})
 }
 
 func TestMkdirRemove(t *testing.T) {

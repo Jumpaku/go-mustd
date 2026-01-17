@@ -23,9 +23,13 @@ func (r *Reader) Len() int {
 	return r.reader.Len()
 }
 
-// Read reads data into b. Panics if an error occurs.
+// Read reads data into b. Panics if an error occurs, except for io.EOF which is treated as a normal condition.
 func (r *Reader) Read(b []byte) (n int) {
-	return mustd.Must1(r.reader.Read(b))
+	n, err := r.reader.Read(b)
+	if err != nil && err != io.EOF {
+		mustd.Must0(err)
+	}
+	return n
 }
 
 // ReadAt reads len(b) bytes into b starting at offset off. Panics if an error occurs.

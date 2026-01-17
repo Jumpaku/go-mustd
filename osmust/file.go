@@ -2,6 +2,7 @@
 package osmust
 
 import (
+	"io"
 	"os"
 
 	"github.com/Jumpaku/go-mustd"
@@ -53,9 +54,13 @@ func (f *File) Name() string {
 	return f.file.Name()
 }
 
-// Read reads up to len(b) bytes from the file. Panics if an error occurs.
+// Read reads up to len(b) bytes from the file. Panics if an error occurs, except for io.EOF which is treated as a normal condition.
 func (f *File) Read(b []byte) (n int) {
-	return mustd.Must1(f.file.Read(b))
+	n, err := f.file.Read(b)
+	if err != nil && err != io.EOF {
+		mustd.Must0(err)
+	}
+	return n
 }
 
 // ReadAt reads len(b) bytes from the file starting at byte offset off. Panics if an error occurs.
