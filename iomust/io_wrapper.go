@@ -107,9 +107,9 @@ func (w *ioWrapper) ReadWriteSeeker() io.ReadWriteSeeker {
 	return mustd.MustImplement[io.ReadWriteSeeker](w.wrap)
 }
 
-// Close closes the underlying ReadCloser, panicking if an error occurs.
+// Close closes the underlying Closer, panicking if an error occurs.
 func (w *ioWrapper) Close() {
-	mustd.Must0(w.ReadCloser().Close())
+	mustd.Must0(w.Closer().Close())
 }
 
 // Seek seeks to the given offset and whence in the underlying io.Seeker, panicking if an error occurs.
