@@ -1,6 +1,7 @@
 package timemust_test
 
 import (
+	"os"
 	"testing"
 	"time"
 
@@ -70,12 +71,40 @@ func TestLoadLocation(t *testing.T) {
 
 func TestLoadLocationFromTZData(t *testing.T) {
 	t.Run("valid TZ data", func(t *testing.T) {
-		// Use minimal valid TZ data (this is a simplified test)
-		// In reality, you'd need proper TZ data bytes
+		// Try to read valid TZ data from common system locations
+		paths := []string{
+			"/usr/share/zoneinfo/America/New_York",       // Linux
+			"/usr/share/lib/zoneinfo/America/New_York",   // Solaris
+			"/usr/lib/locale/TZ/America/New_York",        // AIX
+		}
+
+		var data []byte
+		var err error
+
+		for _, path := range paths {
+			data, err = os.ReadFile(path)
+			if err == nil {
+				break
+			}
+		}
+
+		if err != nil {
+			t.Skipf("Skipping test: cannot read system zoneinfo file from any known location")
+		}
+
+		loc := timemust.LoadLocationFromTZData("CustomNY", data)
+		if loc == nil {
+			t.Error("LoadLocationFromTZData returned nil")
+		}
+		if loc.String() != "CustomNY" {
+			t.Errorf("expected 'CustomNY', got %s", loc.String())
+		}
+	})
+
+	t.Run("invalid TZ data panics", func(t *testing.T) {
 		defer func() {
-			if r := recover(); r != nil {
-				// Expected to panic with invalid data in this simple test
-				// This is fine for demonstration
+			if r := recover(); r == nil {
+				t.Error("LoadLocationFromTZData did not panic with invalid TZ data")
 			}
 		}()
 		timemust.LoadLocationFromTZData("Custom", []byte{})
