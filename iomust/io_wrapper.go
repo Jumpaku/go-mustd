@@ -117,9 +117,14 @@ func (w *ioWrapper) Seek(offset int64, whence int) int64 {
 	return mustd.Must1(w.Seeker().Seek(offset, whence))
 }
 
-// Read reads data into p from the underlying io.Reader, panicking if an error occurs.
+// Read reads data into p from the underlying io.Reader. It panics if an error occurs,
+// except that io.EOF is treated as a normal end-of-input condition and does not panic.
 func (w *ioWrapper) Read(p []byte) (n int) {
-	return mustd.Must1(w.Reader().Read(p))
+	n, err := w.Reader().Read(p)
+	if err == io.EOF {
+		return n
+	}
+	return mustd.Must1(n, err)
 }
 
 // Write writes data from p to the underlying io.Writer, panicking if an error occurs.
