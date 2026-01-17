@@ -71,12 +71,27 @@ func TestLoadLocation(t *testing.T) {
 
 func TestLoadLocationFromTZData(t *testing.T) {
 	t.Run("valid TZ data", func(t *testing.T) {
-		// Read valid TZ data from system zoneinfo
-		data, err := os.ReadFile("/usr/share/zoneinfo/America/New_York")
-		if err != nil {
-			t.Skipf("Skipping test: cannot read system zoneinfo file: %v", err)
+		// Try to read valid TZ data from common system locations
+		paths := []string{
+			"/usr/share/zoneinfo/America/New_York",       // Linux
+			"/usr/share/lib/zoneinfo/America/New_York",   // Solaris
+			"/usr/lib/locale/TZ/America/New_York",        // AIX
 		}
-		
+
+		var data []byte
+		var err error
+
+		for _, path := range paths {
+			data, err = os.ReadFile(path)
+			if err == nil {
+				break
+			}
+		}
+
+		if err != nil {
+			t.Skipf("Skipping test: cannot read system zoneinfo file from any known location")
+		}
+
 		loc := timemust.LoadLocationFromTZData("CustomNY", data)
 		if loc == nil {
 			t.Error("LoadLocationFromTZData returned nil")
