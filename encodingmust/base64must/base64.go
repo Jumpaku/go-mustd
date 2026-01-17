@@ -8,18 +8,17 @@ import (
 	"github.com/Jumpaku/go-mustd/iomust"
 )
 
-// RawStdEncoding is the standard base64 encoding without padding.
-var RawStdEncoding = StdEncoding.WithPadding(base64.NoPadding)
-
-// RawURLEncoding is the URL-safe base64 encoding without padding.
-var RawURLEncoding = URLEncoding.WithPadding(base64.NoPadding)
-
 // StdEncoding is the standard base64 encoding.
 var StdEncoding = NewEncoding("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")
 
 // URLEncoding is the URL-safe base64 encoding.
 var URLEncoding = NewEncoding("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_")
 
+// RawStdEncoding is the standard base64 encoding without padding.
+var RawStdEncoding = StdEncoding.WithPadding(base64.NoPadding)
+
+// RawURLEncoding is the URL-safe base64 encoding without padding.
+var RawURLEncoding = URLEncoding.WithPadding(base64.NoPadding)
 // NewDecoder returns a new base64 stream decoder.
 func NewDecoder(enc *base64.Encoding, r iomust.Reader) iomust.Reader {
 	return iomust.ReaderOf(base64.NewDecoder(enc, r.Reader()))
