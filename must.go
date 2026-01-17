@@ -36,9 +36,9 @@ func Must3[T0, T1, T2 any](v0 T0, v1 T1, v2 T2, err error) (r0 T0, r1 T1, r2 T2)
 	return v0, v1, v2
 }
 
-// MustImplement asserts that v implements type T and returns v cast to T.
+// MustAs asserts that v implements type T and returns v cast to T.
 // Panics if v does not implement T.
-func MustImplement[T any](v any) T {
+func MustAs[T any](v any) T {
 	val, ok := v.(T)
 	if !ok {
 		var t T

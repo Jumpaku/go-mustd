@@ -49,62 +49,62 @@ func WriteCloserOf(w io.WriteCloser) WriteCloser {
 
 // Closer returns the underlying io.Closer, panicking if not implemented.
 func (w *ioWrapper) Closer() io.Closer {
-	return mustd.MustImplement[io.Closer](w.wrap)
+	return mustd.MustAs[io.Closer](w.wrap)
 }
 
 // Seeker returns the underlying io.Seeker, panicking if not implemented.
 func (w *ioWrapper) Seeker() io.Seeker {
-	return mustd.MustImplement[io.Seeker](w.wrap)
+	return mustd.MustAs[io.Seeker](w.wrap)
 }
 
 // Reader returns the underlying io.Reader, panicking if not implemented.
 func (w *ioWrapper) Reader() io.Reader {
-	return mustd.MustImplement[io.Reader](w.wrap)
+	return mustd.MustAs[io.Reader](w.wrap)
 }
 
 // ReadCloser returns the underlying io.ReadCloser, panicking if not implemented.
 func (w *ioWrapper) ReadCloser() io.ReadCloser {
-	return mustd.MustImplement[io.ReadCloser](w.wrap)
+	return mustd.MustAs[io.ReadCloser](w.wrap)
 }
 
 // ReadSeeker returns the underlying io.ReadSeeker, panicking if not implemented.
 func (w *ioWrapper) ReadSeeker() io.ReadSeeker {
-	return mustd.MustImplement[io.ReadSeeker](w.wrap)
+	return mustd.MustAs[io.ReadSeeker](w.wrap)
 }
 
 // ReadSeekCloser returns the underlying io.ReadSeekCloser, panicking if not implemented.
 func (w *ioWrapper) ReadSeekCloser() io.ReadSeekCloser {
-	return mustd.MustImplement[io.ReadSeekCloser](w.wrap)
+	return mustd.MustAs[io.ReadSeekCloser](w.wrap)
 }
 
 // Writer returns the underlying io.Writer, panicking if not implemented.
 func (w *ioWrapper) Writer() io.Writer {
-	return mustd.MustImplement[io.Writer](w.wrap)
+	return mustd.MustAs[io.Writer](w.wrap)
 }
 
 // WriteCloser returns the underlying io.WriteCloser, panicking if not implemented.
 func (w *ioWrapper) WriteCloser() io.WriteCloser {
-	return mustd.MustImplement[io.WriteCloser](w.wrap)
+	return mustd.MustAs[io.WriteCloser](w.wrap)
 }
 
 // WriteSeeker returns the underlying io.WriteSeeker, panicking if not implemented.
 func (w *ioWrapper) WriteSeeker() io.WriteSeeker {
-	return mustd.MustImplement[io.WriteSeeker](w.wrap)
+	return mustd.MustAs[io.WriteSeeker](w.wrap)
 }
 
 // ReadWriter returns the underlying io.ReadWriter, panicking if not implemented.
 func (w *ioWrapper) ReadWriter() io.ReadWriter {
-	return mustd.MustImplement[io.ReadWriter](w.wrap)
+	return mustd.MustAs[io.ReadWriter](w.wrap)
 }
 
 // ReadWriteCloser returns the underlying io.ReadWriteCloser, panicking if not implemented.
 func (w *ioWrapper) ReadWriteCloser() io.ReadWriteCloser {
-	return mustd.MustImplement[io.ReadWriteCloser](w.wrap)
+	return mustd.MustAs[io.ReadWriteCloser](w.wrap)
 }
 
 // ReadWriteSeeker returns the underlying io.ReadWriteSeeker, panicking if not implemented.
 func (w *ioWrapper) ReadWriteSeeker() io.ReadWriteSeeker {
-	return mustd.MustImplement[io.ReadWriteSeeker](w.wrap)
+	return mustd.MustAs[io.ReadWriteSeeker](w.wrap)
 }
 
 // Close closes the underlying Closer, panicking if an error occurs.

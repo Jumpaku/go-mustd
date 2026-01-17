@@ -85,19 +85,19 @@ func TestMust3(t *testing.T) {
 func TestMustImplement(t *testing.T) {
 	t.Run("valid type assertion returns value", func(t *testing.T) {
 		var r io.Reader = &testReader{}
-		result := mustd.MustImplement[io.Reader](r)
+		result := mustd.MustAs[io.Reader](r)
 		if result == nil {
-			t.Error("MustImplement returned nil")
+			t.Error("MustAs returned nil")
 		}
 	})
 
 	t.Run("invalid type assertion panics", func(t *testing.T) {
 		defer func() {
 			if r := recover(); r == nil {
-				t.Error("MustImplement did not panic with invalid type")
+				t.Error("MustAs did not panic with invalid type")
 			}
 		}()
-		mustd.MustImplement[io.Reader]("not a reader")
+		mustd.MustAs[io.Reader]("not a reader")
 	})
 }
 
