@@ -57,9 +57,13 @@ func (b *Buffer) Next(n int) []byte {
 	return b.buffer.Next(n)
 }
 
-// Read reads up to len(p) bytes into p. Panics if an error occurs.
+// Read reads up to len(p) bytes into p. Panics if a non-EOF error occurs.
 func (b *Buffer) Read(p []byte) (n int) {
-	return mustd.Must1(b.buffer.Read(p))
+	n, err := b.buffer.Read(p)
+	if err != nil && err != io.EOF {
+		panic(err)
+	}
+	return n
 }
 
 // ReadByte reads and returns a single byte. Panics if an error occurs.
