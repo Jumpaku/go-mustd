@@ -122,8 +122,8 @@ func (c *Cmd) ProcessState() *os.ProcessState {
 	return c.cmd.ProcessState
 }
 
-func (c *Cmd) SetErr(Err error) {
-	c.cmd.Err = Err
+func (c *Cmd) SetErr(err error) {
+	c.cmd.Err = err
 }
 
 func (c *Cmd) Err() error {
