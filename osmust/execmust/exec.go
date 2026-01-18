@@ -130,8 +130,8 @@ func (c *Cmd) Err() error {
 	return c.cmd.Err
 }
 
-func (c *Cmd) SetCancel(Cancel func() error) {
-	c.cmd.Cancel = Cancel
+func (c *Cmd) SetCancel(cancel func() error) {
+	c.cmd.Cancel = cancel
 }
 
 func (c *Cmd) Cancel() func() error {
