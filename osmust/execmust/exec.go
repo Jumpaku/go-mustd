@@ -42,8 +42,8 @@ func (c *Cmd) Args() []string {
 	return c.cmd.Args
 }
 
-func (c *Cmd) SetEnv(Env []string) {
-	c.cmd.Env = Env
+func (c *Cmd) SetEnv(env []string) {
+	c.cmd.Env = env
 }
 
 func (c *Cmd) Env() []string {
