@@ -82,9 +82,9 @@ func (c *Cmd) Stderr() iomust.Writer {
 	return iomust.WriterOf(c.cmd.Stderr)
 }
 
-func (c *Cmd) SetExtraFiles(ExtraFiles []*osmust.File) {
-	vs := make([]*os.File, len(ExtraFiles))
-	for i, v := range ExtraFiles {
+func (c *Cmd) SetExtraFiles(extraFiles []*osmust.File) {
+	vs := make([]*os.File, len(extraFiles))
+	for i, v := range extraFiles {
 		vs[i] = v.File()
 	}
 	c.cmd.ExtraFiles = vs
