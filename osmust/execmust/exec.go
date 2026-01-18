@@ -50,8 +50,8 @@ func (c *Cmd) Env() []string {
 	return c.cmd.Env
 }
 
-func (c *Cmd) SetDir(Dir string) {
-	c.cmd.Dir = Dir
+func (c *Cmd) SetDir(dir string) {
+	c.cmd.Dir = dir
 }
 
 func (c *Cmd) Dir() string {
