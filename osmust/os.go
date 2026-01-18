@@ -5,6 +5,13 @@ import (
 	"time"
 
 	"github.com/Jumpaku/go-mustd"
+	"github.com/Jumpaku/go-mustd/iomust"
+)
+
+var (
+	Stdin  = iomust.ReaderOf(os.Stdin)
+	Stdout = iomust.WriterOf(os.Stdout)
+	Stderr = iomust.WriterOf(os.Stderr)
 )
 
 // Chdir changes the current working directory. Panics if an error occurs.
