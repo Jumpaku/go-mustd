@@ -114,8 +114,8 @@ func (c *Cmd) Process() *os.Process {
 	return c.cmd.Process
 }
 
-func (c *Cmd) SetProcessState(ProcessState *os.ProcessState) {
-	c.cmd.ProcessState = ProcessState
+func (c *Cmd) SetProcessState(processState *os.ProcessState) {
+	c.cmd.ProcessState = processState
 }
 
 func (c *Cmd) ProcessState() *os.ProcessState {
