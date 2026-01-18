@@ -98,8 +98,8 @@ func (c *Cmd) ExtraFiles() []*osmust.File {
 	return vs
 }
 
-func (c *Cmd) SetSysProcAttr(SysProcAttr *syscall.SysProcAttr) {
-	c.cmd.SysProcAttr = SysProcAttr
+func (c *Cmd) SetSysProcAttr(sysProcAttr *syscall.SysProcAttr) {
+	c.cmd.SysProcAttr = sysProcAttr
 }
 
 func (c *Cmd) SysProcAttr() *syscall.SysProcAttr {
