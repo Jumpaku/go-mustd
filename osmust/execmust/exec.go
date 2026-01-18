@@ -106,8 +106,8 @@ func (c *Cmd) SysProcAttr() *syscall.SysProcAttr {
 	return c.cmd.SysProcAttr
 }
 
-func (c *Cmd) SetProcess(Process *os.Process) {
-	c.cmd.Process = Process
+func (c *Cmd) SetProcess(process *os.Process) {
+	c.cmd.Process = process
 }
 
 func (c *Cmd) Process() *os.Process {
