@@ -138,8 +138,8 @@ func (c *Cmd) Cancel() func() error {
 	return c.cmd.Cancel
 }
 
-func (c *Cmd) SetWaitDelay(WaitDelay time.Duration) {
-	c.cmd.WaitDelay = WaitDelay
+func (c *Cmd) SetWaitDelay(waitDelay time.Duration) {
+	c.cmd.WaitDelay = waitDelay
 }
 
 func (c *Cmd) WaitDelay() time.Duration {
